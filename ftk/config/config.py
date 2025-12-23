@@ -7,8 +7,10 @@ REQUIRED_CHILDREN = {"avatar","config","data"}
 ROOT_NAME = "figura"
 
 _data = {}
+_data_overrides = {}
 
 CONFIG_FILE: Path = Path(user_config_dir("figura-toolkit")) / "config.json"
+
 
 
 def _is_figura_root():
@@ -26,37 +28,48 @@ def _find_figura_root(start: Path | None = None) -> Path | None:
 			return current
 
 
+def get_config_path() -> Path:
+	return CONFIG_FILE
+
 def reset_config():
-	return save_config({
-		"figura_path": "",
-	})
+	print("Resetting config")
+	_data.clear()
+	_data["figura_path"] = ""
+	save_config()
 
 
 def load_config() -> None:
-	if not CONFIG_FILE.exists():
-		reset_config()
-		return 
-	
 	with CONFIG_FILE.open("r") as f:
-		return json.load(f)
+		global data
+		_data.update(json.load(f))
+		
 	
-	if _data["figura_path"] == "":
-		_data["figura_path"] = _find_figura_root()
+	if CONFIG_FILE.read_text() == "{}":
+		print("Config file is empty.")
+		reset_config()
+	
+	if _data.get("figura_path") == "":
+		_data_overrides["figura_path"] = _find_figura_root()
 
 
-def save_config(config: dict) -> None:
+def save_config() -> None:
 	CONFIG_FILE.parent.mkdir(parents=True, exist_ok=True)
 	
 	with CONFIG_FILE.open("w", encoding="utf-8") as f:
-		json.dump(config, f)
+		json.dump(_data, f)
 
 
-def set_property(key: str, value):
-	if _data.get(key) is not None:
-		_data[key] = value
+def set_property(key: str, value, verbose: bool = False):
+	last_value = _data[key]
+	_data[key] = value
+	if verbose:
+		print(f"set {key} to {value}\nold value: {last_value}")
 
 
 def get_property(key: str):
-	return _data.get(key)
+	if key in _data_overrides:
+		return _data_overrides[key]
+	else:
+		return _data.get(key)
 
-config = load_config()
+load_config()

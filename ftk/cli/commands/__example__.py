@@ -5,7 +5,7 @@ from prompt_toolkit.completion import PathCompleter
 from pathlib import Path
 import ftk.config as config
 
-
+BASE_PATH = Path(config.get_property("figura_path"))
 
 def register(subparsers: _SubParsersAction) -> None:
 	parser: ArgumentParser = subparsers.add_parser(
@@ -34,17 +34,9 @@ def register(subparsers: _SubParsersAction) -> None:
 	parser.set_defaults(func=run)
 
 def run(args: Namespace) -> None:
-	
-	
-	base_path = config.get_property("figura_path")
-	
-	if base_path == "":
-		print("No figura root found, please set one with the follow command:\n figura-toolkit set figura_path <path>")
-		return
-	
 	if args.name is None: # TUI
 		args.name = prompt(
-			default=str(Path(base_path)),
+			default=str(BASE_PATH),
 			completer=PathCompleter(
 				expanduser=True,
 				only_directories=True
