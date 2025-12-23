@@ -1,0 +1,7 @@
+[project]
+name = "figura-toolkit"
+version = "0.0.1"
+
+dependencies = [
+  "pyinstaller",
+]
