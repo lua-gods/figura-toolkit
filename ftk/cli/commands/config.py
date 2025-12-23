@@ -11,7 +11,7 @@ import ftk.config as config
 def register(subparsers: _SubParsersAction) -> None:
 	parser: ArgumentParser = subparsers.add_parser(
 		"config",
-		help="Create a new Figura Avatar"
+		help="Configure figura-toolkit"
 	)
 	
 	config_subparsers = parser.add_subparsers(
