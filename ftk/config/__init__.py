@@ -1,0 +1,1 @@
+from .config import get_property, set_property

@@ -6,20 +6,19 @@ import json
 REQUIRED_CHILDREN = {"avatar","config","data"}
 ROOT_NAME = "figura"
 
-data = {}
+_data = {}
 
 CONFIG_FILE: Path = Path(user_config_dir("figura-toolkit")) / "config.json"
 
 
-def is_figura_root():
+def _is_figura_root():
 	if path.name != "figura":
 		return False
 
 
-def find_figura_root(start: Path | None = None) -> Path | None:
+def _find_figura_root(start: Path | None = None) -> Path | None:
 	if start is None:
 		start = Path.cwd()
-	
 	start = start.resolve()
 	
 	for current in [start, *start.parents]:
@@ -27,7 +26,7 @@ def find_figura_root(start: Path | None = None) -> Path | None:
 			return current
 
 
-def make_default_config():
+def reset_config():
 	return save_config({
 		"figura_path": "",
 	})
@@ -35,14 +34,14 @@ def make_default_config():
 
 def load_config() -> None:
 	if not CONFIG_FILE.exists():
-		make_default_config()
+		reset_config()
 		return 
 	
 	with CONFIG_FILE.open("r") as f:
 		return json.load(f)
 	
-	if data["figura_path"] == "":
-		data["figura_path"] = find_figura_root()
+	if _data["figura_path"] == "":
+		_data["figura_path"] = _find_figura_root()
 
 
 def save_config(config: dict) -> None:
@@ -51,5 +50,13 @@ def save_config(config: dict) -> None:
 	with CONFIG_FILE.open("w", encoding="utf-8") as f:
 		json.dump(config, f)
 
+
+def set_property(key: str, value):
+	if _data.get(key) is not None:
+		_data[key] = value
+
+
+def get_property(key: str):
+	return _data.get(key)
 
 config = load_config()
