@@ -4,4 +4,6 @@ version = "0.0.1"
 
 dependencies = [
   "pyinstaller",
+  "prompt_toolkit",
+  "appdirs",
 ]
