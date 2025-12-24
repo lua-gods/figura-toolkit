@@ -29,12 +29,16 @@ then enter the venv
 > .venv/bin/activate.fish
 ```
 
+to run the tool out from source
+```
+python -m ftk <args>
+```
 ## Building from source
 > [!NOTE]
 > only a linux build is available at this time
 
 ### Linux build
-simply run the build.sh in bash
+simply run the build.sh, if it dosent work, try it in bash
 
 ```
 bash build.sh

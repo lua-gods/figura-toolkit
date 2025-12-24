@@ -9,13 +9,8 @@ ROOT_NAME = "figura"
 _data = {}
 _data_overrides = {}
 
+
 CONFIG_FILE: Path = Path(user_config_dir("figura-toolkit")) / "config.json"
-
-
-
-def _is_figura_root():
-	if path.name != "figura":
-		return False
 
 
 def _find_figura_root(start: Path | None = None) -> Path | None:
@@ -49,7 +44,9 @@ def load_config() -> None:
 		reset_config()
 	
 	if _data.get("figura_path") == "":
-		_data_overrides["figura_path"] = _find_figura_root()
+		path = _find_figura_root()
+		if path is not None:
+			_data_overrides["figura_path"] = path
 
 
 def save_config() -> None:
