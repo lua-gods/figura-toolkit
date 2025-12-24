@@ -11,4 +11,4 @@ rm -rf build dist *.egg-info
 ftk/__main__.py
 
 
-chmod +x dist/figura-toolkitecho $SHELL
+chmod +x ./dist/figura-toolkit
