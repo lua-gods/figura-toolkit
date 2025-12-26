@@ -113,13 +113,11 @@ def run(args: Namespace) -> None:
 	
 	with (target_path / "avatar.json").open("w", encoding="utf-8") as f:
 		json.dump(avatar_json, f, indent=4)
-	
 	(target_path / "main.lua").touch()
 	
 	success("Avatar created in "+str(target_path))
 	
 	input("Press enter to continue...")
-	
 	open_folder(target_path)
 
 

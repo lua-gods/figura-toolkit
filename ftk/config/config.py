@@ -34,13 +34,15 @@ def reset_config():
 
 
 def load_config() -> None:
+	
+	if not CONFIG_FILE.exists():
+		reset_config()
+	
 	with CONFIG_FILE.open("r") as f:
 		global data
 		_data.update(json.load(f))
-		
 	
 	if CONFIG_FILE.read_text() == "{}":
-		print("Config file is empty.")
 		reset_config()
 	
 	if _data.get("figura_path") == "":
