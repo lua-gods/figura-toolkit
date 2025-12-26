@@ -10,8 +10,8 @@ ILLEGAL_CHARS = '<>:"|?*'  # Windows-safe
 
 class HexColorValidator(PrefixedValidator):
 	def validate(self, document):
-		if text == "": return # allow empty
 		text = document.text.strip()
+		if text is None or text == "": return # allow empty
 		if not HEX_RE.match(text):
 			raise self.error(
 				"Enter a hex color like #RRGGBB")

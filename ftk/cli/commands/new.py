@@ -1,12 +1,12 @@
-import os
 from argparse import _SubParsersAction,Namespace,ArgumentParser
 from prompt_toolkit import prompt
-from prompt_toolkit.styles import Style
 from prompt_toolkit.shortcuts import confirm
 from prompt_toolkit.completion import PathCompleter
-from prompt_toolkit.output import ColorDepth
-import pathlib
 from pathlib import Path
+import json
+import os
+import subprocess
+import platform
 
 import ftk.config as config
 from ftk.styles.prints import *
@@ -92,16 +92,43 @@ def run(args: Namespace) -> None:
 			default=config.get_property("author") or "",
 			)
 		
-		args.desc = prompt(
-			"Description (optional): ",
-			validator=validators.NameValidator(),
-			validate_while_typing=True,
-			)
-	else:
-		args.path = str(avatar_path)
+		args.desc = prompt("Description (optional): ")
 	
-	if args.path is None:
-		args.path = str(avatar_path)
 	
-	if args.name is None:
-		args.name = "avatar"
+	target_path = avatar_path / Path(args.path) / Path(args.name)
+	
+	if target_path.exists():
+		if not confirm("Avatar already exists in this path, overwrite?"):
+			warn("Aborted")
+			return
+	target_path.mkdir(parents=True)
+	
+	avatar_json = {}
+	if args.color is not None:
+		avatar_json["color"] = args.color
+	if args.author is not None and args.author != "":
+		avatar_json["author"] = args.author
+	if args.desc is not None:
+		avatar_json["description"] = args.desc
+	
+	with (target_path / "avatar.json").open("w", encoding="utf-8") as f:
+		json.dump(avatar_json, f, indent=4)
+	
+	(target_path / "main.lua").touch()
+	
+	success("Avatar created in "+str(target_path))
+	
+	input("Press enter to continue...")
+	
+	open_folder(target_path)
+
+
+def open_folder(path: Path):
+	system = platform.system()
+
+	if system == "Windows":
+		os.startfile(path)
+	elif system == "Darwin":  # macOS
+		subprocess.run(["open", path])
+	else:  # Linux
+		subprocess.run(["xdg-open", path])
