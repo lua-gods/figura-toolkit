@@ -3,7 +3,47 @@
 
 # Package Examples
 
-### Example Package (Multiple Files)
+### Example Package Repo Source (Multiple Files)
+
+
+```jsonc
+{
+	"name": "user.package",
+
+	// history snapshots of the package
+	"versions": [
+		{
+			"version": "3.0.0",
+			"hash": "f1d6268e5dce8597128d78dc17d72501b58e7032"
+		},
+		{
+			"version": "2.0.0",
+			"hash": "516a6ed6225b9a9d46c1f6d7eae809aed87892d2",
+		},
+
+		// the first version has alot more entries compared to the newer version entries, because it declares everything about the packages
+		// entries can still be added into the newer versions to dictate changes in that given entry in question (dependencies,src,paths)
+		{
+			"version": "1.0.0",
+			"hash": "90ca0aa251aa73e0e0c1dfae6b43de9ddfa7ec71",
+			"layout": {
+				// layout declared as an array
+				"paths": ["example.lua", "src/folder.lua", "src/other/folder.lua"]
+			},
+			// tells what packages needs to be installed for this to work
+			// this is in the version entry because dependencies can change, newer dependency entries will override this value
+			"dependencies": ["user.package2"],
+
+			// works alongside the hash to grab a specific version of the file in the given repository link
+			"repo": "https://repo.com/repo/"
+		}
+	]
+}
+
+```
+
+### Example Package Direct link (Single File)
+
 
 ```jsonc
 {
@@ -11,52 +51,28 @@
 
 	// tells which is the default version to install
 	"latest": "3.0.0",
-	
-	// history snapshots of the package
-	"versions": {
-		"3.0.0": {"hash": "f1d6268e5dce8597128d78dc17d72501b58e7032"},
-		"2.0.0": {"hash": "516a6ed6225b9a9d46c1f6d7eae809aed87892d2"},
-		
-		// the first version has alot more entries compared to the newer version entries, because it declares everything about the packages
-		// entries can still be added into the newer versions to dictate changes in that given entry in question (dependencies,src,paths)
-		"1.0.0": {
-			"hash": "90ca0aa251aa73e0e0c1dfae6b43de9ddfa7ec71",
-			"layout": {// layout declared as an array
-				"paths": ["example.lua", "src/folder.lua", "src/other/folder.lua"]
-			},
-			// tells what packages needs to be installed for this to work
-			// this is in the version entry because dependencies can change, newer dependency entries will override this value
-			"dependencies": ["user.package2"],
-			
-			// works alongside the hash to grab a specific version of the file in the given repository link
-			"repo": "https://repo.com/repo/"
-		}
-	}
-}
-```
 
-### Example Package (Single File)
-
-```jsonc
-{
-	"name":"user.package",
-	
-	// tells which is the default version to install
-	"latest": "3.0.0",
-	
 	// the different versions of the file
-	"versions":{
-		"3.0.0":{"src":"https://example.com/package-3.0.0.lua"},
-		"2.0.0":{"src":"https://example.com/package-2.0.0.lua"},
-		
+	"versions": [
+		{
+			"version": "3.0.0",
+			"src": "https://example.com/package-3.0.0.lua"
+		},
+		{
+			"version": "2.0.0",
+			"src": "https://example.com/package-2.0.0.lua"
+		},
+
 		// the first version has alot more entries compared to the newer version entries, because it declares everything about the packages
 		// entries can still be added into the newer versions to dictate changes in that given entry in question (dependencies,src,paths)
-		"1.0.0":{
-			"src":"https://example.com/package-1.0.0.lua",
-			"depdendencies":["user.package2"]
-			}
-	}
+		{
+			"version": "1.0.0",
+			"src": "https://example.com/package-1.0.0.lua",
+			"dependencies": ["user.package2"]
+		}
+	]
 }
+
 ```
 
 # Repository of packages Example
