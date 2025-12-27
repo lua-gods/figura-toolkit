@@ -10,6 +10,12 @@
 	"versions":{
 		"3.0.0":{"src":"https://example.com/package-3.0.0.lua"},
 		"2.0.0":{"src":"https://example.com/package-2.0.0.lua"},
-		"1.0.0":{"src":"https://example.com/package-1.0.0.lua"}
+		
+		// the first version has alot more entries compared to the newer version entries, because it declares everything about the packages
+		// entries can still be added into the newer versions to dictate changes in that given entry in question (dependencies,src,paths)
+		"1.0.0":{
+			"src":"https://example.com/package-1.0.0.lua",
+			"depdendencies":["user.package2"]
+			}
 	}
 }
