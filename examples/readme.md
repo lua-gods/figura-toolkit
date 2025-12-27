@@ -2,7 +2,7 @@
 
 ### Example Package (Multiple Files)
 
-```json
+```jsonc
 {
 	"name": "user.package",
 
@@ -39,7 +39,7 @@
 
 ### Example Package (Single File)
 
-```json
+```jsonc
 {
 	"name":"user.package",
 	
@@ -57,7 +57,7 @@
 
 # Repository of packages Example
 
-```json
+```jsonc
 // the one that holds the list of all the packages
 {
 	"user.package": "example_package_single.json",
@@ -72,7 +72,7 @@
 - a list of the required packages
 - this tells the figura toolkit what to look for
 
-```json
+```jsonc
 {
 	"packages": {
 		"user.package": "1.0.0"
@@ -85,7 +85,7 @@
 - this json is automatically generated and handled by the figura-toolkit,
 - not meant to be touched by the user
 
-```json
+```jsonc
 {
 	// tells what version of the figura toolkit is used to manage this project
 	"ftk-version": "0.0.1",
