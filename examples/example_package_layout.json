@@ -1,0 +1,10 @@
+{
+	"paths":[
+		"example.lua",
+		"src/folder.lua",
+		"src/other/folder.lua"
+	],
+	"dependencies":[
+		"user.package2"
+	]
+}

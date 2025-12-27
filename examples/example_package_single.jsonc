@@ -1,0 +1,13 @@
+// this example is in jsonc to allow me to explain each part of the json
+
+{
+	"name":"user.package",
+	"versions":{
+		"1.0.0":{"src":"https://example.com/package-1.0.0.lua"},
+		"2.0.0":{"src":"https://example.com/package-2.0.0.lua"},
+		"3.0.0":{"src":"https://example.com/package-3.0.0.lua"}
+	},
+	"dependencies":[
+		"user.package2"
+	]
+}

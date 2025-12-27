@@ -1,0 +1,31 @@
+{
+	"name":"user.package",
+	
+	// history snapshots of the package
+	// entries in the base dictionary can also be added into a version, as overrides
+	// note that the overrides will affect every version to itself to the oldest that dosent have that entry,
+	// so you only have to put an override when that said entry has changed
+	"versions":{
+		"1.0.0":{
+			"hash":"90ca0aa251aa73e0e0c1dfae6b43de9ddfa7ec71"
+		},
+		"2.0.0":{
+			"hash":"516a6ed6225b9a9d46c1f6d7eae809aed87892d2",
+			"layout":"example_old_layout.json" // layout has been changed in this version, going forawrd
+		},
+		"3.0.0":{
+			"hash":"f1d6268e5dce8597128d78dc17d72501b58e7032"
+		}
+	},
+	
+	// the values here can also be supplied in a version entry, as seen in example_package_single.jsonc
+	// but it acts as a global default value if its supplied down here at the root dictionary.
+	"src":"https://example.com/package-1.0.0.lua",
+	
+	// this tells which files to grab from the given repository link, based on the hash entry.
+	// its so that we dont have to copy paste the same layout for different versions.
+	"layout":"example_package_layout.json",
+	
+	// global dependency for all versions, this exists for single file packages
+	"dependencies":[]
+}
