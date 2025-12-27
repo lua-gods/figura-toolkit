@@ -1,0 +1,13 @@
+{
+	// the path to each file, relative to the root of the repository
+	"paths":[
+		"example.lua",
+		"src/folder.lua",
+		"src/other/folder.lua"
+	],
+	
+	// the layout can also have its own dependency entry, but the entry in the version takes priority
+	"dependencies":[
+		"user.package2"
+	]
+}

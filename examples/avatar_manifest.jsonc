@@ -1,0 +1,7 @@
+{
+	// a list of the required packages
+	// this tells the figura toolkit what to look for
+	"packages":{
+		"user.package":"1.0.0"
+	}
+}

@@ -1,0 +1,5 @@
+// the one that holds the list of all the packages
+{
+	"user.package":"example_package_single.jsonc",
+	"user.package2":"example_package_multi.jsonc"
+}

@@ -2,12 +2,14 @@
 
 {
 	"name":"user.package",
+	
+	// tells which is the default version to install
+	"latest": "3.0.0",
+	
+	// the different versions of the file
 	"versions":{
-		"1.0.0":{"src":"https://example.com/package-1.0.0.lua"},
+		"3.0.0":{"src":"https://example.com/package-3.0.0.lua"},
 		"2.0.0":{"src":"https://example.com/package-2.0.0.lua"},
-		"3.0.0":{"src":"https://example.com/package-3.0.0.lua"}
-	},
-	"dependencies":[
-		"user.package2"
-	]
+		"1.0.0":{"src":"https://example.com/package-1.0.0.lua"}
+	}
 }

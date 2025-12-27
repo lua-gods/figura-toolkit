@@ -1,0 +1,12 @@
+// this json is automatically generated and handled by the figura-toolkit,
+// not meant to be touched by the user
+
+{
+	// tells what version of the figura toolkit is used to manage this project
+	"ftk-version": "0.0.1",
+	
+	//a list of all the currently installed packages and dependencies
+	"packages": {
+		"user.package": "1.0.0"
+	}
+}

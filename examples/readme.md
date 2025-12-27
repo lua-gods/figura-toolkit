@@ -1,3 +1,8 @@
+# Package Examples
+
+### Example Package (Multiple Files)
+
+```json
 {
 	"name": "user.package",
 
@@ -22,7 +27,7 @@
 		}
 	},
 
-	// the values here can also be supplied in a version entry, as seen in example_package_single.jsonc
+	// the values here can also be supplied in a version entry, as seen in example_package_single.json
 	// but it acts as a global default value if its supplied down here at the root dictionary.
 	"src": "https://example.com/package-1.0.0.lua",
 
@@ -30,3 +35,64 @@
 	// its so that we dont have to copy paste the same layout for different versions.
 	"layout": "example_package_layout.json"
 }
+```
+
+### Example Package (Single File)
+
+```json
+{
+	"name":"user.package",
+	
+	// tells which is the default version to install
+	"latest": "3.0.0",
+	
+	// the different versions of the file
+	"versions":{
+		"3.0.0":{"src":"https://example.com/package-3.0.0.lua"},
+		"2.0.0":{"src":"https://example.com/package-2.0.0.lua"},
+		"1.0.0":{"src":"https://example.com/package-1.0.0.lua"}
+	}
+}
+```
+
+# Repository of packages Example
+
+```json
+// the one that holds the list of all the packages
+{
+	"user.package": "example_package_single.json",
+	"user.package2": "example_package_multi.json"
+}
+```
+
+# Per Avatar files
+
+### avatar_manifest.json
+
+- a list of the required packages
+- this tells the figura toolkit what to look for
+
+```json
+{
+	"packages": {
+		"user.package": "1.0.0"
+	}
+}
+```
+
+### avatar_manifest.json.lock
+
+- this json is automatically generated and handled by the figura-toolkit,
+- not meant to be touched by the user
+
+```json
+{
+	// tells what version of the figura toolkit is used to manage this project
+	"ftk-version": "0.0.1",
+	
+	//a list of all the currently installed packages and dependencies
+	"packages": {
+		"user.package": "1.0.0"
+	}
+}
+```
