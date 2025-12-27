@@ -1,3 +1,6 @@
+> [!NOTE]
+> This readme is a proof of concept, message me on the thread about the repo if you have any questions or suggestions
+
 # Package Examples
 
 ### Example Package (Multiple Files)
