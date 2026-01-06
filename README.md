@@ -38,8 +38,7 @@ python -m ftk <args>
 > only a linux build is available at this time
 
 ### Linux build
-simply run the build.sh, if it dosent work, try it in bash
-
+simply run the build.sh, if it doesn't work, try it in bash
 ```
 bash build.sh
 ```
